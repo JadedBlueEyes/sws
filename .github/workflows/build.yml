@@ -8,7 +8,9 @@ jobs:
 
     steps:
     - name: Checkout latest build
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false
       
     - name: Declare some variables
       id: vars
@@ -27,7 +29,7 @@ jobs:
       run: msbuild /m /p:Configuration=Release /p:Platform=x64 SimpleWindowSwitcher.sln
       
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: sws_bin_amd64_${{ steps.vars.outputs.sha_short }}_${{ steps.vars.outputs.branch }}
         path: |
